@@ -1,19 +1,40 @@
-// variables storing user inputs
+// initialize axios
+var axios = require("axios");
+
+// variables storing user inputs and utility
 var input1 = process.argv[2];
 var input2 = process.argv[3];
-
-var spotify = new Spotify(keys.spotify);
+// var spotify = new Spotify(keys.spotify);
 // var OMDBkey = new OMDB(keys.OMDB);
 // var bandsKey = new bands(keys.bands);
 
-var axios = require("axios");
+// var musicInfo = {
+//     "crossDomain": true,
+//     "url": 'https://api.spotify.com/v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?market=ES&include_groups=appears_on&limit=2',
+//     "method": 'GET',
+//     "responseType": 'stream',
+//     "headers": {
+//         "Authorization": 'Bearer ' + spotify,
+//     }
+// }
 
 if (input1 === "concert-this") {
     axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=" + bandsKey).then(
         function(response) {
             // If the axios was successful...
             // Then log the body from the site!
+            // var results = response.data
+            console.log("----------");
             console.log(response.data);
+            console.log("----------");
+            console.log("----------");
+            // var response.data = results;
+            // for(var i=0; i < results.venue.length; i++) {
+            //     console.log(results.venue[i].name);
+            //     console.log(results.venue[i].city);
+            // }
+            console.log(response.data.datetime);
+            console.log("----------");
         },
         function(error) {
             if (error.response) {
@@ -36,12 +57,7 @@ if (input1 === "concert-this") {
 } // END conditional for concert-this command
 
 if (input1 === "spotify-this-song") {
-    axios({
-        method: 'get',
-        url: 'https://api.spotify.com/v1/artists/1vCWHaC5f2uS3yhpwWbIA6/albums?market=ES&include_groups=appears_on&limit=2',
-        authorization: 'Bearer ' + spotify,
-        responseType: 'stream'
-    }).then(
+    axios(musicInfo).then(
         function(response) {
             // If the axios was successful...
             // Then log the body from the site!
