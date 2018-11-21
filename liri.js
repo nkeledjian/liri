@@ -19,22 +19,24 @@ var input2 = process.argv[3];
 // }
 
 if (input1 === "concert-this") {
-    axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=" + bandsKey).then(
+    axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=").then(
         function(response) {
+            var results = response.data
             // If the axios was successful...
             // Then log the body from the site!
             // var results = response.data
-            console.log("----------");
-            console.log(response.data);
-            console.log("----------");
-            console.log("----------");
-            // var response.data = results;
-            // for(var i=0; i < results.venue.length; i++) {
-            //     console.log(results.venue[i].name);
-            //     console.log(results.venue[i].city);
-            // }
-            console.log(response.data.datetime);
-            console.log("----------");
+            console.log("--------------------");
+            console.log(results);
+            
+            // console.log(results.venue.name);
+            console.log("--------------------");
+            for(var i=0; i<results.length; i++){
+                    console.log(results[i].datetime);
+                }
+            console.log("--------------------");
+            console.log("--------------------");
+            // console.log(results.lineup);
+            console.log("--------------------");
         },
         function(error) {
             if (error.response) {
