@@ -21,21 +21,21 @@ var input2 = process.argv[3];
 if (input1 === "concert-this") {
     axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=").then(
         function(response) {
-            var results = response.data
-            // If the axios was successful...
-            // Then log the body from the site!
-            // var results = response.data
+            var results = response.data;
             console.log("--------------------");
-            console.log(results);
-            
-            // console.log(results.venue.name);
-            console.log("--------------------");
+            // console.log(results);
             for(var i=0; i<results.length; i++){
-                    console.log(results[i].datetime);
-                }
-            console.log("--------------------");
-            console.log("--------------------");
-            // console.log(results.lineup);
+                var resultsArtist = results[i];
+                var venuePlay = resultsArtist.venue;
+                console.log(" *********** VENUE ***********  ");
+                console.log(results[i].venue);
+                console.log(" *********** DATE & TIME *********** ");
+                console.log(resultsArtist.datetime);
+                for(var j=0; j<venuePlay.length; j++){
+                    console.log(venuePlay[j].name);
+                    console.log(venuePlay[j].city);
+                };
+            }
             console.log("--------------------");
         },
         function(error) {
