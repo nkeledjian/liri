@@ -20,38 +20,46 @@ var input2 = process.argv[3];
 
 if (input1 === "concert-this") {
     axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=").then(
-        function(response) {
+        function (response) {
             var results = response.data;
-            console.log("--------------------");
-            // console.log(results);
-            for(var i=0; i<results.length; i++){
-                var resultsArtist = results[i];
-                var venuePlay = resultsArtist.venue;
-                console.log(" *********** VENUE ***********  ");
-                console.log(results[i].venue);
-                console.log(" *********** DATE & TIME *********** ");
+            // console.log("----------RESPONSE.DATA----------");
+            // console.log(results)
+            // console.log("----------RESPONSE.DATA----------");
+            for (var i = 0; i < results.length; i++) {
+                console.log("--------------------")
+                var resultsArtist = results[i]
+                console.log(" *********** VENUE ***********  ")
+                console.log(resultsArtist.venue)
+                // for (var j = 0; j < resultsArtist.venue.length; j++) {
+                //     console.log(resultsArtist.venue[j].name)
+                //     console.log(resultsArtist.venue[j].city)
+                // }
+                console.log("\n");
+                console.log(" *********** DATE & TIME *********** ")
                 console.log(resultsArtist.datetime);
-                for(var j=0; j<venuePlay.length; j++){
-                    console.log(venuePlay[j].name);
-                    console.log(venuePlay[j].city);
-                };
+                console.log("\n");
+                console.log(" *********** FULL LINEUP *********** ")
+                console.log(resultsArtist.lineup);
+                console.log("\n");
+                console.log("--------------------")
             }
-            console.log("--------------------");
+            
+
         },
-        function(error) {
+        function (error) {
             if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
             } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an object that comes back with details pertaining to the error that occurred.
-            console.log(error.request);
+                // The request was made but no response was received
+                // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                console.log(error.request);
             } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log("Error", error.message);
+                // Something happened in setting up the request that triggered an Error
+                console.log("Error", error.message);
             }
             console.log(error.config);
         }
@@ -60,25 +68,25 @@ if (input1 === "concert-this") {
 
 if (input1 === "spotify-this-song") {
     axios(musicInfo).then(
-        function(response) {
+        function (response) {
             // If the axios was successful...
             // Then log the body from the site!
             console.log(response.data);
         },
-        function(error) {
+        function (error) {
             if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
             } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an object that comes back with details pertaining to the error that occurred.
-            console.log(error.request);
+                // The request was made but no response was received
+                // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                console.log(error.request);
             } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log("Error", error.message);
+                // Something happened in setting up the request that triggered an Error
+                console.log("Error", error.message);
             }
             console.log(error.config);
         }
@@ -87,26 +95,26 @@ if (input1 === "spotify-this-song") {
 
 if (input1 === "movie-this") {
     axios.get("http://www.omdbapi.com/?s=" + input2 + "&apikey=" + OMDBkey).then(
-        function(response) {
+        function (response) {
             // If the axios was successful...
             // Then log the body from the site!
             console.log(response.data);
         },
 
-        function(error) {
+        function (error) {
             if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
             } else if (error.request) {
-            // The request was made but no response was received
-            // `error.request` is an object that comes back with details pertaining to the error that occurred.
-            console.log(error.request);
+                // The request was made but no response was received
+                // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                console.log(error.request);
             } else {
-            // Something happened in setting up the request that triggered an Error
-            console.log("Error", error.message);
+                // Something happened in setting up the request that triggered an Error
+                console.log("Error", error.message);
             }
             console.log(error.config);
         }
