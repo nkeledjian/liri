@@ -40,11 +40,8 @@ if (input1 === "concert-this") {
                 console.log("\n");
                 console.log(" *********** FULL LINEUP *********** ")
                 console.log(resultsArtist.lineup);
-                console.log("\n");
                 console.log("--------------------")
             }
-            
-
         },
         function (error) {
             if (error.response) {
