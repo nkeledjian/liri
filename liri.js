@@ -1,8 +1,9 @@
 // initialize axios
 var keys = require("./keys");
+require("dotenv").config();
 var axios = require("axios");
 var Spotify = require("node-spotify-api");
-require("dotenv").config();
+var fs = require("fs");
 
 // variables storing user inputs and utility
 var input1 = process.argv[2];
@@ -13,21 +14,24 @@ var spotify = new Spotify(keys.spotify);
 
 // *** CONCERT THIS COMMAND **
 if (input1 === "concert-this") {
-    axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id="+bandsKey).then(
+    axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=").then(
         function (response) {
             var results = response.data;
-            // console.log("----------RESPONSE.DATA----------");
-            // console.log(results)
-            // console.log("----------RESPONSE.DATA----------");
+            console.log("----------RESPONSE.DATA----------");
+            console.log(results)
+            console.log("----------RESPONSE.DATA----------");
             for (var i = 0; i < results.length; i++) {
                 console.log("--------------------")
                 var resultsArtist = results[i]
                 console.log(" *********** VENUE ***********  ")
                 console.log(resultsArtist.venue)
-                // for (var j = 0; j < resultsArtist.venue.length; j++) {
-                //     console.log(resultsArtist.venue[j].name)
-                //     console.log(resultsArtist.venue[j].city)
-                // }
+                var venueArtist = resultsArtist.venue;
+                console.log(" VENUE TEST OUTPUT START")
+                for (var j = 0; j < venueArtist.length; j++) {
+                    console.log(venueArtist[j].name)
+                    console.log(venueArtist[j].city)
+                }
+                console.log("VENUE TEST OUTPUT END")
                 console.log("\n");
                 console.log(" *********** DATE & TIME *********** ")
                 console.log(resultsArtist.datetime);
@@ -98,3 +102,23 @@ if (input1 === "movie-this") {
         }
     ); // END OMDB API then function
 } // END conditional for movie-this
+
+if (input1 === "do-what-it-says") {
+    fs.readFile("random.txt", "utf8", function(error, data) {
+
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+          return console.error(error);
+        }
+      
+        // We will then print the contents of data
+        console.log(data);
+      
+        // Then split it by commas (to make it more readable)
+        var dataArr = data.split(",");
+      
+        // We will then re-display the content as an array for later use.
+        console.log(dataArr);
+      
+      });
+}
