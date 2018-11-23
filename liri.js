@@ -18,7 +18,6 @@ if (input1 === "concert-this") {
     axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=").then(
         function (response) {
             var results = response.data
-            // console.log(results)
             for (var i = 0; i < results.length; i++) {
                 console.log("----------------------------------------")
                 var resultsArtist = results[i]
@@ -68,13 +67,20 @@ if (input1 === "spotify-this-song") {
 
 // *** MOVIE THIS SONG COMMAND **
 if (input1 === "movie-this") {
-    axios.get("http://www.omdbapi.com/?s=" + input2 + "&apikey=" + OMDBkey).then(
+    axios.get("http://www.omdbapi.com/?t=" + input2 + "&apikey=").then(
         function (response) {
             // If the axios was successful...
             // Then log the body from the site!
-            console.log(response.data);
+            var results = response.data
+            console.log(results)
+            console.log(results.Title)
+            console.log(results.Year)
+            console.log(results.Language)
+            var ratingsMovie = results.ratings
+            for (var i=0; i<ratingsMovie.length; i++){
+                console.log(ratingsMovie[1]);
+            }
         },
-
         function (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
@@ -99,21 +105,23 @@ if (input1 === "do-what-it-says") {
     fs.readFile("random.txt", "utf8", function(error, data) {
         for (var i=0; i<data.length; i++){
             if (data[0] === "concert-this"){
-                // call bands in town API function
+                // call bands in town API function with data[1]
+            }
+            if (data[0] === "spotify-this-song"){
+                // call spotify API function with data[1]
+            }
+            if (data[0] === "movie-this"){
+                // call OMDB API function with data[1]
             }
         }
-        
         // If the code experiences any errors it will log the error to the console.
         if (error) {
           return console.error(error);
         }
-      
         // We will then print the contents of data
         console.log(data);
-      
         // Then split it by commas (to make it more readable)
         var dataArr = data.split(",");
-      
         // We will then re-display the content as an array for later use.
         console.log(dataArr);
       
