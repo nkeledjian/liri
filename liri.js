@@ -1,4 +1,4 @@
-// initialize axios
+// initialize keys and packages
 var keys = require("./keys");
 require("dotenv").config();
 var axios = require("axios");
@@ -72,14 +72,22 @@ if (input1 === "movie-this") {
             // If the axios was successful...
             // Then log the body from the site!
             var results = response.data
-            console.log(results)
-            console.log(results.Title)
-            console.log(results.Year)
-            console.log(results.Language)
-            var ratingsMovie = results.ratings
-            for (var i=0; i<ratingsMovie.length; i++){
-                console.log(ratingsMovie[1]);
+            // console.log("---RESPONSE.DATA---")
+            // console.log(results)
+            // console.log("---RESPONSE.DATA---")
+            console.log("-----" + results.Title + "-----")
+            console.log("*Year Released: ", results.Year)
+            console.log("*IMdb Rating:", results.imdbRating)
+            var ratingsMovie = results.Ratings
+            for(var i=0; ratingsMovie.length; i++){
+                var rating = ratingsMovie[1]
+                console.log("*Rotten Tomatoes Rating: ", rating);
+                break
             }
+            console.log("*Country of Origin: ", results.Country)
+            console.log("*Language: ", results.Language)
+            console.log("*Plot: ", results.Plot);
+            console.log("*Actors: ", results.Actors);
         },
         function (error) {
             if (error.response) {
