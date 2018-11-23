@@ -4,8 +4,8 @@ require("dotenv").config();
 var axios = require("axios");
 var Spotify = require("node-spotify-api");
 var fs = require("fs");
-var time = require("moment.js");
-
+var moment = require("moment");
+// var moment = moment();
 
 // variables storing user inputs and utility
 var input1 = process.argv[2];
@@ -18,11 +18,10 @@ var spotify = new Spotify(keys.spotify);
 if (input1 === "concert-this") {
     axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=").then(
         function (response) {
-            
             var results = response.data;
-            console.log("----------RESPONSE.DATA----------");
-            console.log(results)
-            console.log("----------RESPONSE.DATA----------");
+            // console.log("----------RESPONSE.DATA----------");
+            // console.log(results)
+            // console.log("----------RESPONSE.DATA----------");
             for (var i = 0; i < results.length; i++) {
                 console.log("--------------------")
                 var resultsArtist = results[i]
@@ -30,18 +29,17 @@ if (input1 === "concert-this") {
                 console.log(resultsArtist.venue)
 
                 // var venueArtist = resultsArtist.venue;
-                console.log(" VENUE TEST OUTPUT START")
+                // console.log(" VENUE TEST OUTPUT START")
                 // for (var j = 0; j < venueArtist.length; j++) {
                 //     console.log(venueArtist[j].name)
                 //     console.log(venueArtist[j].city)
                 // }
-                console.log("VENUE TEST OUTPUT END")
+                // console.log("VENUE TEST OUTPUT END")
 
-                console.log("\n");
                 console.log(" *********** DATE & TIME *********** ")
                 var dateArtist = resultsArtist.datetime;
-                console.log(dateArtist.time.format("hh:mm"));
-                console.log("\n");
+                console.log("ON: ", dateArtist.slice(0, 10));
+                console.log("AT: ", moment(dateArtist).format("hh:mm"));
                 console.log(" *********** FULL LINEUP *********** ")
                 console.log(resultsArtist.lineup);
                 console.log("--------------------")
