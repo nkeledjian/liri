@@ -4,6 +4,8 @@ require("dotenv").config();
 var axios = require("axios");
 var Spotify = require("node-spotify-api");
 var fs = require("fs");
+var time = require("moment.js");
+
 
 // variables storing user inputs and utility
 var input1 = process.argv[2];
@@ -16,6 +18,7 @@ var spotify = new Spotify(keys.spotify);
 if (input1 === "concert-this") {
     axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=").then(
         function (response) {
+            
             var results = response.data;
             console.log("----------RESPONSE.DATA----------");
             console.log(results)
@@ -25,16 +28,19 @@ if (input1 === "concert-this") {
                 var resultsArtist = results[i]
                 console.log(" *********** VENUE ***********  ")
                 console.log(resultsArtist.venue)
-                var venueArtist = resultsArtist.venue;
+
+                // var venueArtist = resultsArtist.venue;
                 console.log(" VENUE TEST OUTPUT START")
-                for (var j = 0; j < venueArtist.length; j++) {
-                    console.log(venueArtist[j].name)
-                    console.log(venueArtist[j].city)
-                }
+                // for (var j = 0; j < venueArtist.length; j++) {
+                //     console.log(venueArtist[j].name)
+                //     console.log(venueArtist[j].city)
+                // }
                 console.log("VENUE TEST OUTPUT END")
+
                 console.log("\n");
                 console.log(" *********** DATE & TIME *********** ")
-                console.log(resultsArtist.datetime);
+                var dateArtist = resultsArtist.datetime;
+                console.log(dateArtist.time.format("hh:mm"));
                 console.log("\n");
                 console.log(" *********** FULL LINEUP *********** ")
                 console.log(resultsArtist.lineup);
@@ -105,7 +111,12 @@ if (input1 === "movie-this") {
 
 if (input1 === "do-what-it-says") {
     fs.readFile("random.txt", "utf8", function(error, data) {
-
+        for (var i=0; i<data.length; i++){
+            if (data[0] === "concert-this"){
+                // call bands in town API function
+            }
+        }
+        
         // If the code experiences any errors it will log the error to the console.
         if (error) {
           return console.error(error);
