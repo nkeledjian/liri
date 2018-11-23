@@ -5,7 +5,6 @@ var axios = require("axios");
 var Spotify = require("node-spotify-api");
 var fs = require("fs");
 var moment = require("moment");
-// var moment = moment();
 
 // variables storing user inputs and utility
 var input1 = process.argv[2];
@@ -18,31 +17,20 @@ var spotify = new Spotify(keys.spotify);
 if (input1 === "concert-this") {
     axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=").then(
         function (response) {
-            var results = response.data;
-            // console.log("----------RESPONSE.DATA----------");
+            var results = response.data
             // console.log(results)
-            // console.log("----------RESPONSE.DATA----------");
             for (var i = 0; i < results.length; i++) {
-                console.log("--------------------")
+                console.log("----------------------------------------")
                 var resultsArtist = results[i]
-                console.log(" *********** VENUE ***********  ")
-                console.log(resultsArtist.venue)
-
-                // var venueArtist = resultsArtist.venue;
-                // console.log(" VENUE TEST OUTPUT START")
-                // for (var j = 0; j < venueArtist.length; j++) {
-                //     console.log(venueArtist[j].name)
-                //     console.log(venueArtist[j].city)
-                // }
-                // console.log("VENUE TEST OUTPUT END")
-
-                console.log(" *********** DATE & TIME *********** ")
-                var dateArtist = resultsArtist.datetime;
-                console.log("ON: ", dateArtist.slice(0, 10));
-                console.log("AT: ", moment(dateArtist).format("hh:mm"));
-                console.log(" *********** FULL LINEUP *********** ")
-                console.log(resultsArtist.lineup);
-                console.log("--------------------")
+                var venue = resultsArtist.venue
+                console.log("*********** VENUE ***********")
+                console.log(venue.name)
+                console.log(venue.city, venue.region)
+                console.log("*********** DATE & TIME ***********")
+                var dateArtist = resultsArtist.datetime
+                console.log("ON: ", dateArtist.slice(0, 10))
+                console.log("AT: ", moment(dateArtist).format("hh:mm a"))
+                console.log("----------------------------------------")
             }
         },
         function (error) {
@@ -54,7 +42,7 @@ if (input1 === "concert-this") {
                 console.log(error.response.headers);
             } else if (error.request) {
                 // The request was made but no response was received
-                // `error.request` is an object that comes back with details pertaining to the error that occurred.
+                // `error.request` object returns details on error
                 console.log(error.request);
             } else {
                 // Something happened in setting up the request that triggered an Error
