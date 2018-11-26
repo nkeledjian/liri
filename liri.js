@@ -61,19 +61,36 @@ if (input1 === "spotify-this-song") {
         query: input2, 
         limit: 5 })
     .then(function(response) {
+        console.log("---RESPONSE start---")
         console.log(response)
-        var results = response.tracks
-        console.log("---Results start---")
-        console.log(results)
-        console.log("---Results end---")
+        console.log("---RESPONSE end---")
 
-        console.log("Output test start")
-        for (var i=0; i<results.length; i++){
-            console.log(results[i].artists);
-            // console.log(results[i].name);
-            // console.log(results[i].href);   
+        var results = response.tracks
+        // console.log("---Response.tracks start---")
+        // console.log(results)
+        // console.log("---Response.tracks end---")
+
+        console.log("---Output test start---")
+        // console.log("**results.items start**")
+        // console.log(results.items);
+        // console.log("**results.items end**")
+
+        // response.tracks.items = artistItems
+        var artistItems = results.items
+        console.log("**Artist Items**")
+        console.log(artistItems)
+
+        var artistAlbum = artistItems.album
+        console.log("**Artist Album**")
+        for (var i=0; i<artistAlbum.length; i++) {
+            console.log("***" + artistAlbum[i] + "***")   
         }
-        console.log("Output test end")
+        
+        // Artist(s)
+        //  The song's name
+        //  A preview link of the song from Spotify
+        //  The album that the song is from
+        console.log("---Output test end---")
     })
     .catch(function(err) {
         console.log(err)
