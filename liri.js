@@ -56,52 +56,43 @@ if (input1 === "concert-this") {
 // *** SPOTIFY THIS SONG COMMAND **
 if (input1 === "spotify-this-song") {
     spotify
-    .search({ 
-        type: 'track', 
-        query: input2, 
-        limit: 1 })
-    .then(function(response) {
-        // console.log("---RESPONSE start---")
-        // console.log(response)
-        // console.log("---RESPONSE end---")
-        var results = response.tracks
-        
-        var artistItems = results.items
-        // console.log("---Artist Items start---")
-        // console.log(artistItems)
-        // console.log("---Artist Items end---")
+        .search({
+            type: 'track',
+            query: input2,
+            limit: 1
+        })
+        .then(function (response) {
+            // console.log("---RESPONSE start---")
+            // console.log(response)
+            // console.log("---RESPONSE end---")
+            var results = response.tracks
+            var artistItems = results.items
+            // console.log("---Artist Items start---")
+            // console.log(artistItems)
+            // console.log("---Artist Items end---")
+            console.log("\n");
+            console.log("***Song: " + input2.toUpperCase() + "***")
 
-        console.log("---Output test start---")
-        console.log("\n");
+            // artistItems = response.tracks.items
+            for (var i = 0; i < artistItems.length; i++) {
+                console.log("***Artist(s)***")
+                var artistNames = artistItems[i].artists
+                for (var j = 0; j < artistNames.length; j++) {
+                    console.log(artistNames[j].name)
+                }
+                console.log("***Song preview by Spotify***")
+                console.log(artistItems[i].preview_url)
 
-        console.log("***Song: "+input2.toUpperCase()+"***")
-        console.log("***Artist(s)***")
-        // artistItems = response.tracks.items
-
-        for (var i=0; i<artistItems.length; i++) {
-            var artistNames = artistItems[i].artists
-            for (var j=0; j<artistNames.length; j++){
-                console.log(artistNames[j].name)
+                var artistAlbum = artistItems[i].album
+                console.log("***From Album***")
+                console.log(artistAlbum.name);
             }
-            console.log("***Song preview by Spotify***")
-            console.log(artistItems[i].preview_url)
-
-        }
-        // var artistAlbum = artistItems.album
-        // console.log("**Artist Album**")
-        // for (var i=0; i<artistAlbum.length; i++) {
-        //     console.log("***" + artistAlbum[i] + "***")   
-        // }
-        
-        // Artist(s)
-        //  The song's name
-        //  A preview link of the song from Spotify
-        //  The album that the song is from
-        console.log("---Output test end---")
-    })
-    .catch(function(err) {
-        console.log(err)
-    });
+            // console.log("---Output test start---")
+            // console.log("---Output test end---")
+        })
+        .catch(function (err) {
+            console.log(err)
+        });
 } // END conditional for spotify-this-song command
 
 // *** MOVIE THIS SONG COMMAND **
@@ -118,7 +109,7 @@ if (input1 === "movie-this") {
             console.log("*Year Released: ", results.Year)
             console.log("*IMdb Rating:", results.imdbRating)
             var ratingsMovie = results.Ratings
-            for(var i=0; ratingsMovie.length; i++){
+            for (var i = 0; ratingsMovie.length; i++) {
                 var rating = ratingsMovie[1]
                 console.log("*Rotten Tomatoes Rating: ", rating)
                 break
@@ -149,21 +140,21 @@ if (input1 === "movie-this") {
 } // END conditional for movie-this
 
 if (input1 === "do-what-it-says") {
-    fs.readFile("random.txt", "utf8", function(error, data) {
-        for (var i=0; i<data.length; i++){
-            if (data[0] === "concert-this"){
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        for (var i = 0; i < data.length; i++) {
+            if (data[0] === "concert-this") {
                 // call bands in town API function with data[1]
             }
-            if (data[0] === "spotify-this-song"){
+            if (data[0] === "spotify-this-song") {
                 // call spotify API function with data[1]
             }
-            if (data[0] === "movie-this"){
+            if (data[0] === "movie-this") {
                 // call OMDB API function with data[1]
             }
         }
         // If the code experiences any errors it will log the error to the console.
         if (error) {
-          return console.error(error)
+            return console.error(error)
         }
         // We will then print the contents of data
         console.log(data)
@@ -171,6 +162,6 @@ if (input1 === "do-what-it-says") {
         var dataArr = data.split(",")
         // We will then re-display the content as an array for later use.
         console.log(dataArr)
-      
-      });
+
+    });
 }
