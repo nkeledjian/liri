@@ -56,12 +56,24 @@ if (input1 === "concert-this") {
 // *** SPOTIFY THIS SONG COMMAND **
 if (input1 === "spotify-this-song") {
     spotify
-    .search({ type: 'track', query: input2 })
+    .search({ type: 'track', query: input2, limit: 5 })
     .then(function(response) {
-        console.log(response);
+        console.log(response)
+        var results = response.tracks
+        console.log("---Results start---")
+        console.log(results)
+        console.log("---Results end---")
+        
+        console.log("Output test start")
+        for (var i=0; i<results.length; i++){
+            console.log(results[i].artists);
+            // console.log(results[i].name);
+            // console.log(results[i].href);   
+        }
+        console.log("Output test end")
     })
     .catch(function(err) {
-        console.log(err);
+        console.log(err)
     });
 } // END conditional for spotify-this-song command
 
@@ -81,30 +93,30 @@ if (input1 === "movie-this") {
             var ratingsMovie = results.Ratings
             for(var i=0; ratingsMovie.length; i++){
                 var rating = ratingsMovie[1]
-                console.log("*Rotten Tomatoes Rating: ", rating);
+                console.log("*Rotten Tomatoes Rating: ", rating)
                 break
             }
             console.log("*Country of Origin: ", results.Country)
             console.log("*Language: ", results.Language)
-            console.log("*Plot: ", results.Plot);
-            console.log("*Actors: ", results.Actors);
+            console.log("*Plot: ", results.Plot)
+            console.log("*Actors: ", results.Actors)
         },
         function (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
+                console.log(error.response.data)
+                console.log(error.response.status)
+                console.log(error.response.headers)
             } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an object that comes back with details pertaining to the error that occurred.
-                console.log(error.request);
+                console.log(error.request)
             } else {
                 // Something happened in setting up the request that triggered an Error
-                console.log("Error", error.message);
+                console.log("Error", error.message)
             }
-            console.log(error.config);
+            console.log(error.config)
         }
     ); // END OMDB API then function
 } // END conditional for movie-this
@@ -124,14 +136,14 @@ if (input1 === "do-what-it-says") {
         }
         // If the code experiences any errors it will log the error to the console.
         if (error) {
-          return console.error(error);
+          return console.error(error)
         }
         // We will then print the contents of data
-        console.log(data);
+        console.log(data)
         // Then split it by commas (to make it more readable)
-        var dataArr = data.split(",");
+        var dataArr = data.split(",")
         // We will then re-display the content as an array for later use.
-        console.log(dataArr);
+        console.log(dataArr)
       
       });
 }
