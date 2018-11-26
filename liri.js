@@ -76,21 +76,13 @@ if (input1 === "spotify-this-song") {
         console.log(artistItems)
         console.log("**Artist Items end**")
 
-        console.log("**Artists test start**")
+        console.log("**Artists**")
         for (var i=0; i<artistItems.length; i++) {
             var artistNames = artistItems[i].artists;
-            for (var j=0;j<artistNames.length; j++){
-                console.log("contrib. artist: ", artistNames[i]);
+            for (var j=0; j<artistNames.length; j++){
+                console.log(artistNames[j].name);
             }
         }
-        console.log("**Artists test end**")
-
-        // var artistInfo = artistItems.artists
-        // console.log("**Song Artist(s) start**")
-        // for (var i=0; i<artistInfo.length; i++) {
-        //     console.log("***" + artistInfo[i] + "***")   
-        // }
-        // console.log("**Song Artist(s) end**")
 
         // var artistAlbum = artistItems.album
         // console.log("**Artist Album**")
