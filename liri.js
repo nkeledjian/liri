@@ -59,31 +59,34 @@ if (input1 === "spotify-this-song") {
     .search({ 
         type: 'track', 
         query: input2, 
-        limit: 5 })
+        limit: 1 })
     .then(function(response) {
-        console.log("---RESPONSE start---")
-        console.log(response)
-        console.log("---RESPONSE end---")
-
+        // console.log("---RESPONSE start---")
+        // console.log(response)
+        // console.log("---RESPONSE end---")
         var results = response.tracks
-        // console.log("---Response.tracks start---")
-        // console.log(results)
-        // console.log("---Response.tracks end---")
+        
+        var artistItems = results.items
+        // console.log("---Artist Items start---")
+        // console.log(artistItems)
+        // console.log("---Artist Items end---")
 
         console.log("---Output test start---")
-        var artistItems = results.items
-        console.log("**Artist Items start**")
-        console.log(artistItems)
-        console.log("**Artist Items end**")
+        console.log("\n");
 
-        console.log("**Artists**")
+        console.log("***Song: "+input2.toUpperCase()+"***")
+        console.log("***Artist(s)***")
+        // artistItems = response.tracks.items
+
         for (var i=0; i<artistItems.length; i++) {
-            var artistNames = artistItems[i].artists;
+            var artistNames = artistItems[i].artists
             for (var j=0; j<artistNames.length; j++){
-                console.log(artistNames[j].name);
+                console.log(artistNames[j].name)
             }
-        }
+            console.log("***Song preview by Spotify***")
+            console.log(artistItems[i].preview_url)
 
+        }
         // var artistAlbum = artistItems.album
         // console.log("**Artist Album**")
         // for (var i=0; i<artistAlbum.length; i++) {
