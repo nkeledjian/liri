@@ -71,20 +71,32 @@ if (input1 === "spotify-this-song") {
         // console.log("---Response.tracks end---")
 
         console.log("---Output test start---")
-        // console.log("**results.items start**")
-        // console.log(results.items);
-        // console.log("**results.items end**")
-
-        // response.tracks.items = artistItems
         var artistItems = results.items
-        console.log("**Artist Items**")
+        console.log("**Artist Items start**")
         console.log(artistItems)
+        console.log("**Artist Items end**")
 
-        var artistAlbum = artistItems.album
-        console.log("**Artist Album**")
-        for (var i=0; i<artistAlbum.length; i++) {
-            console.log("***" + artistAlbum[i] + "***")   
+        console.log("**Artists test start**")
+        for (var i=0; i<artistItems.length; i++) {
+            var artistNames = artistItems[i].artists;
+            for (var j=0;j<artistNames.length; j++){
+                console.log("contrib. artist: ", artistNames[i]);
+            }
         }
+        console.log("**Artists test end**")
+
+        // var artistInfo = artistItems.artists
+        // console.log("**Song Artist(s) start**")
+        // for (var i=0; i<artistInfo.length; i++) {
+        //     console.log("***" + artistInfo[i] + "***")   
+        // }
+        // console.log("**Song Artist(s) end**")
+
+        // var artistAlbum = artistItems.album
+        // console.log("**Artist Album**")
+        // for (var i=0; i<artistAlbum.length; i++) {
+        //     console.log("***" + artistAlbum[i] + "***")   
+        // }
         
         // Artist(s)
         //  The song's name
