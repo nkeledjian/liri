@@ -56,14 +56,17 @@ if (input1 === "concert-this") {
 // *** SPOTIFY THIS SONG COMMAND **
 if (input1 === "spotify-this-song") {
     spotify
-    .search({ type: 'track', query: input2, limit: 5 })
+    .search({ 
+        type: 'track', 
+        query: input2, 
+        limit: 5 })
     .then(function(response) {
         console.log(response)
         var results = response.tracks
         console.log("---Results start---")
         console.log(results)
         console.log("---Results end---")
-        
+
         console.log("Output test start")
         for (var i=0; i<results.length; i++){
             console.log(results[i].artists);
