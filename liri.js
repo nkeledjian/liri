@@ -8,49 +8,59 @@ var moment = require("moment");
 
 // variables storing user inputs and utility
 var input1 = process.argv[2];
-var input2 = process.argv[3];
+// var input2 = process.argv[3];
+
+// USE BELOW CODE TO IMPLEMENT MULTIPLE INPUTS
+var nodeArg = process.argv;
+var userInputArr = [];
+
+for (var i=3; i< nodeArg.length; i++){
+    userInputArr.push(nodeArg[i]);
+}
+
 var spotify = new Spotify(keys.spotify);
 // var OMDBkey = new OMDB(keys.OMDB);
 // var bandsKey = new bands(keys.bands);
 
 // *** CONCERT THIS COMMAND **
-if (input1 === "concert-this") {
-    axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=").then(
-        function (response) {
-            var results = response.data
-            for (var i = 0; i < results.length; i++) {
-                console.log("----------------------------------------")
-                var resultsArtist = results[i]
-                var venue = resultsArtist.venue
-                console.log("*********** VENUE ***********")
-                console.log(venue.name)
-                console.log(venue.city, venue.region)
-                console.log("*********** DATE & TIME ***********")
-                var dateArtist = resultsArtist.datetime
-                console.log("ON: ", dateArtist.slice(0, 10))
-                console.log("AT: ", moment(dateArtist).format("hh:mm a"))
-                console.log("----------------------------------------")
+
+    if (input1 === "concert-this") {
+        axios.get("https://rest.bandsintown.com/artists/" + userInputArr + "/events?app_id=").then(
+            function (response) {
+                var results = response.data
+                for (var i = 0; i < results.length; i++) {
+                    console.log("----------------------------------------")
+                    var resultsArtist = results[i]
+                    var venue = resultsArtist.venue
+                    console.log("*********** VENUE ***********")
+                    console.log(venue.name)
+                    console.log(venue.city, venue.region)
+                    console.log("*********** DATE & TIME ***********")
+                    var dateArtist = resultsArtist.datetime
+                    console.log("ON: ", dateArtist.slice(0, 10))
+                    console.log("AT: ", moment(dateArtist).format("hh:mm a"))
+                    console.log("----------------------------------------")
+                }
+            },
+            function (error) {
+                if (error.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // The request was made but no response was received
+                    // `error.request` object returns details on error
+                    console.log(error.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    console.log("Error", error.message);
+                }
+                console.log(error.config);
             }
-        },
-        function (error) {
-            if (error.response) {
-                // The request was made and the server responded with a status code
-                // that falls out of the range of 2xx
-                console.log(error.response.data);
-                console.log(error.response.status);
-                console.log(error.response.headers);
-            } else if (error.request) {
-                // The request was made but no response was received
-                // `error.request` object returns details on error
-                console.log(error.request);
-            } else {
-                // Something happened in setting up the request that triggered an Error
-                console.log("Error", error.message);
-            }
-            console.log(error.config);
-        }
-    ); // END Bands in Town API then function
-} // END conditional for concert-this command
+        ); // END Bands in Town API then function
+    } // END conditional for concert-this command
 
 
 // *** SPOTIFY THIS SONG COMMAND **
@@ -58,7 +68,7 @@ if (input1 === "spotify-this-song") {
     spotify
         .search({
             type: 'track',
-            query: input2,
+            query: userInputArr,
             limit: 1
         })
         .then(function (response) {
@@ -71,7 +81,7 @@ if (input1 === "spotify-this-song") {
             // console.log(artistItems)
             // console.log("---Artist Items end---")
             console.log("\n");
-            console.log("***Song: " + input2.toUpperCase() + "***")
+            console.log("***Song: " + userInputArr.toUpperCase() + "***")
 
             // artistItems = response.tracks.items
             for (var i = 0; i < artistItems.length; i++) {
@@ -97,7 +107,7 @@ if (input1 === "spotify-this-song") {
 
 // *** MOVIE THIS SONG COMMAND **
 if (input1 === "movie-this") {
-    axios.get("http://www.omdbapi.com/?t=" + input2 + "&apikey=").then(
+    axios.get("http://www.omdbapi.com/?t=" + userInputArr + "&apikey=").then(
         function (response) {
             // If the axios was successful...
             // Then log the body from the site!
@@ -165,3 +175,4 @@ if (input1 === "do-what-it-says") {
 
     });
 }
+// } // end input for loop
