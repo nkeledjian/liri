@@ -29,5 +29,6 @@ and get:
 ## DO WHAT IT SAYS MODE with RANDOM.TXT
 Create a command in random.txt file like this:
 `concert-this,tycho` or `movie-this,deep impact`
- and run it with:
+
+and run it with:
 `node liri.js do-what-it-says`
