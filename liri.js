@@ -18,14 +18,12 @@ if (process.argv[4] === undefined) {
 
 // Initializing keys
 var spotify = new Spotify(keys.spotify);
-// var OMDBkey = new OMDB(keys.OMDB);
+var OMDBkey = keys.OMDB;
 var bandsKey = keys.bands;
 
 // *** CONCERT THIS COMMAND **
-
-
 var myBands = function() {
-  axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=" + bandsKey).then(
+  axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=" + bandsKey.id).then(
     function (response) {
       var results = response.data
       for (var i = 0; i < results.length; i++) {
@@ -113,7 +111,7 @@ var mySpotify = function() {
 
 // *** MOVIE THIS SONG COMMAND **
 var myMovie = function() {
-  axios.get("http://www.omdbapi.com/?t=" + input2 + "&apikey=4c12a09a").then(
+  axios.get("http://www.omdbapi.com/?t=" + input2 + "&apikey=" + OMDBkey.id).then(
     function (response) {
       var results = response.data
       // console.log("---RESPONSE.DATA---")
@@ -155,17 +153,22 @@ var myMovie = function() {
 
 var doWhatItSays = function() {
   fs.readFile("random.txt", "utf8", function (error, data) {
-    var dataArr = data.split(",")
-    console.log(dataArr[0])
+    var dataArr = data.split(",");
     if (dataArr[0] === "concert-this") {
+        // assign values to input variable
         input1 = dataArr[0]
         input2 = dataArr[1]
-        myBands();
+        myBands()
     }
     if (dataArr[0] === "spotify-this-song") {
         input1 = dataArr[0]
         input2 = dataArr[1]
-        mySpotify();
+        mySpotify()
+    }
+    if (dataArr[0] === "movie-this") {
+      input1 = dataArr[0]
+      input2 = dataArr[1]
+      myMovie()
     }
     // If the code experiences any errors it will log the error to the console.
     if (error) {

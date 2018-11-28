@@ -8,7 +8,7 @@ exports.spotify = {
 };
 
 exports.OMDB = {
-    id: process.env.OMDB_KEY
+    id: "trilogy"
 };
 
 exports.bands = {
