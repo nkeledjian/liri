@@ -6,7 +6,7 @@
 ### Search Music Groups 
 ###### powered by Bands in Town Artists Events API
 Find out where & when your favorite artists are performing next with this command:
-* node liri.js concert-this "artist/band name here"
+`node liri.js concert-this "artist/band name here`
 
 #### Search Songs 
 ###### powered by Spotify API
@@ -18,7 +18,7 @@ Discover information about songs and albums with the command:
 #### Search Titles and Reviews 
 ###### powered by OMdb API
 Search movie titles with the command:
-* node liri.js movie-this "movie title here"
+`node liri.js movie-this "movie title here"`
 
 and get:
 * Year Released
@@ -27,5 +27,7 @@ and get:
 * Plots, Actors, and More
 
 ## DO WHAT IT SAYS MODE with RANDOM.TXT
-Edit the random.txt file with a command of your choice and run it with:
-* node liri.js do-what-it-says
+Create a command in random.txt file like this:
+`concert-this,tycho` or `movie-this,deep impact`
+ and run it with:
+`node liri.js do-what-it-says`
