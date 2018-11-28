@@ -15,6 +15,7 @@ if (process.argv[4] === undefined) {
   // simply redefines var input2 to take input from index 3 only
   var input2 = process.argv[3];
 }
+
 // Initializing keys
 var spotify = new Spotify(keys.spotify);
 // var OMDBkey = new OMDB(keys.OMDB);
@@ -63,7 +64,7 @@ var spotify = new Spotify(keys.spotify);
 // } // END conditional for concert-this command
 
 // *** SPOTIFY THIS SONG COMMAND **
-if (input1 === "spotify-this-song") {
+var mySpotify = function(input2) {
   if (input2 === undefined) {
     input2 = "The Sign";
   }
@@ -163,13 +164,6 @@ if (input1 === "do-what-it-says") {
         // dataArr[1] = input2
         myBands();
     }
-    // if (data[0] === "spotify-this-song") {
-    //     // mySpotify()
-    // }
-    // if (data[0] === "movie-this") {
-    //     // call OMDB API function 
-    // }
-    // }
     // If the code experiences any errors it will log the error to the console.
     if (error) {
       return console.error(error)
@@ -180,17 +174,20 @@ if (input1 === "do-what-it-says") {
     // var dataArr = data.split(",")
     // // We will then re-display the content as an array for later use.
     console.log(dataArr)
-
   });
+} // end do-what-it-says command for loop
+
+var select = function(caseData, functionData){
+    switch (caseData){
+      case "concert-this":
+        myBands(functionData);
+        break;
+      default:
+        console.log("LIRI doesn't know this command");
+    }
+};
+var main = function(input1, input2){
+  select(input1, input2);
 }
 
-// } // end do-what-it-says command for loop
-
-// var select = function(input1){
-//     switch (input1){
-//         case "concert-this":
-//             myBands(input2);
-//             break;
-//     }
-// };
-// select();
+main(a, b);
