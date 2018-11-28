@@ -19,13 +19,13 @@ if (process.argv[4] === undefined) {
 // Initializing keys
 var spotify = new Spotify(keys.spotify);
 // var OMDBkey = new OMDB(keys.OMDB);
-// var bandsKey = new bands(keys.bands);
+var bandsKey = keys.bands;
 
 // *** CONCERT THIS COMMAND **
 
-// if (input1 === "concert-this") {
-  var myBands = function() {
-  axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=").then(
+
+var myBands = function() {
+  axios.get("https://rest.bandsintown.com/artists/" + input2 + "/events?app_id=" + bandsKey).then(
     function (response) {
       var results = response.data
       for (var i = 0; i < results.length; i++) {
@@ -60,11 +60,11 @@ var spotify = new Spotify(keys.spotify);
       console.log(error.config);
     }
   ); // END Bands in Town API then function
-  } // END myBands function
-// } // END conditional for concert-this command
+} // END myBands function
+
 
 // *** SPOTIFY THIS SONG COMMAND **
-var mySpotify = function(input2) {
+var mySpotify = function() {
   if (input2 === undefined) {
     input2 = "The Sign";
   }
@@ -112,11 +112,9 @@ var mySpotify = function(input2) {
 } // END conditional for spotify-this-song command
 
 // *** MOVIE THIS SONG COMMAND **
-if (input1 === "movie-this") {
-  axios.get("http://www.omdbapi.com/?t=" + input2 + "&apikey=").then(
+var myMovie = function() {
+  axios.get("http://www.omdbapi.com/?t=" + input2 + "&apikey=4c12a09a").then(
     function (response) {
-      // If the axios was successful...
-      // Then log the body from the site!
       var results = response.data
       // console.log("---RESPONSE.DATA---")
       // console.log(results)
@@ -155,14 +153,19 @@ if (input1 === "movie-this") {
   ); // END OMDB API then function
 } // END conditional for movie-this
 
-if (input1 === "do-what-it-says") {
+var doWhatItSays = function() {
   fs.readFile("random.txt", "utf8", function (error, data) {
     var dataArr = data.split(",")
     console.log(dataArr[0])
     if (dataArr[0] === "concert-this") {
-        dataArr[0] = input1
-        // dataArr[1] = input2
+        input1 = dataArr[0]
+        input2 = dataArr[1]
         myBands();
+    }
+    if (dataArr[0] === "spotify-this-song") {
+        input1 = dataArr[0]
+        input2 = dataArr[1]
+        mySpotify();
     }
     // If the code experiences any errors it will log the error to the console.
     if (error) {
@@ -182,12 +185,22 @@ var select = function(caseData, functionData){
       case "concert-this":
         myBands(functionData);
         break;
+      case "spotify-this-song":
+        mySpotify(functionData);
+        break;
+      case "movie-this":
+        myMovie();
+        break;
+      case "do-what-it-says":
+        doWhatItSays();
+        break;
       default:
         console.log("LIRI doesn't know this command");
     }
 };
+
 var main = function(input1, input2){
   select(input1, input2);
 }
 
-main(a, b);
+main(input1, input2);
