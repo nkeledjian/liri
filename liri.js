@@ -73,15 +73,8 @@ var mySpotify = function() {
       limit: 7
     })
     .then(function (response) {
-      // console.log("---RESPONSE start---")
-      // console.log(response)
-      // console.log("---RESPONSE end---")
       var artistItems = response.tracks.items
-      // console.log("---Artist Items start---")
-      // console.log(artistItems)
-      // console.log("---Artist Items end---")
       console.log("\n");
-      // artistItems = response.tracks.items
       for (var i = 0; i < artistItems.length; i++) {
         console.log("***Song: " + input2 + "***")
         console.log("***Artist(s)***")
@@ -101,22 +94,17 @@ var mySpotify = function() {
         console.log(artistAlbum.name);
         console.log("--------------------------");
       }
-      // console.log("---Output test start---")
-      // console.log("---Output test end---")
     })
     .catch(function (err) {
       console.log(err)
     });
-} // END conditional for spotify-this-song command
+} // END spotify-this-song command function
 
 // *** MOVIE THIS SONG COMMAND **
 var myMovie = function() {
   axios.get("http://www.omdbapi.com/?t=" + input2 + "&apikey=" + OMDBkey.id).then(
     function (response) {
       var results = response.data
-      // console.log("---RESPONSE.DATA---")
-      // console.log(results)
-      // console.log("---RESPONSE.DATA---")
       console.log("-----" + results.Title + "-----")
       console.log("*Year Released: ", results.Year)
       console.log("*IMdb Rating:", results.imdbRating)
@@ -149,7 +137,7 @@ var myMovie = function() {
       console.log(error.config)
     }
   ); // END OMDB API then function
-} // END conditional for movie-this
+} // END movie-this command function
 
 var doWhatItSays = function() {
   fs.readFile("random.txt", "utf8", function (error, data) {
@@ -161,27 +149,23 @@ var doWhatItSays = function() {
         myBands()
     }
     if (dataArr[0] === "spotify-this-song") {
+      // assign values to input variable
         input1 = dataArr[0]
         input2 = dataArr[1]
         mySpotify()
     }
     if (dataArr[0] === "movie-this") {
+      // assign values to input variable
       input1 = dataArr[0]
       input2 = dataArr[1]
       myMovie()
     }
-    // If the code experiences any errors it will log the error to the console.
     if (error) {
       return console.error(error)
     }
-    // // We will then print the contents of data
-    // console.log(data)
-    // // Then split it by commas (to make it more readable)
-    // var dataArr = data.split(",")
-    // // We will then re-display the content as an array for later use.
     console.log(dataArr)
   });
-} // end do-what-it-says command for loop
+}
 
 var select = function(caseData, functionData){
     switch (caseData){
