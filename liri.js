@@ -102,6 +102,9 @@ var mySpotify = function() {
 
 // *** MOVIE THIS SONG COMMAND **
 var myMovie = function() {
+  if (input2 === undefined) {
+    input2 = "Mr Nobody";
+  }
   axios.get("http://www.omdbapi.com/?t=" + input2 + "&apikey=" + OMDBkey.id).then(
     function (response) {
       var results = response.data
