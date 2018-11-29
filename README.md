@@ -8,7 +8,7 @@
 Find out where & when your favorite artists are performing next with this command:
 `node liri.js concert-this "artist/band name here`
 
-<iframe src="https://giphy.com/embed/f9SiiMfOJTjI9kon52" width="480" height="225" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/f9SiiMfOJTjI9kon52"></a></p>
+`<iframe src="https://giphy.com/embed/f9SiiMfOJTjI9kon52" width="480" height="225" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/f9SiiMfOJTjI9kon52"></a></p>`
 
 #### Search Songs 
 ###### powered by Spotify API
