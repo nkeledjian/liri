@@ -8,13 +8,7 @@ var moment = require("moment");
 
 // variables storing user inputs
 var input1 = process.argv[2];
-var input2 = process.argv[3] + " " + process.argv[4];
-
-// removes input from index 4 if single word title entered by user
-if (process.argv[4] === undefined) {
-  // simply redefines var input2 to take input from index 3 only
-  var input2 = process.argv[3];
-}
+var input2 = process.argv.slice(3).join(" ");
 
 // Initializing keys
 var spotify = new Spotify(keys.spotify);
