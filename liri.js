@@ -59,8 +59,8 @@ var myBands = function() {
 
 // *** SPOTIFY THIS SONG COMMAND **
 var mySpotify = function() {
-  if (input2 === undefined) {
-    input2 = "The Sign";
+  if (!input2) {
+    input2 = "The Sign Ace of Base";
   }
   spotify
     .search({
@@ -98,7 +98,7 @@ var mySpotify = function() {
 
 // *** MOVIE THIS SONG COMMAND **
 var myMovie = function() {
-  if (input2 === undefined) {
+  if (!input2) {
     input2 = "Mr Nobody";
   }
   axios.get("http://www.omdbapi.com/?t=" + input2 + "&apikey=" + OMDBkey.id).then(
