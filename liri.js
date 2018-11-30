@@ -7,7 +7,9 @@ var fs = require("fs");
 var moment = require("moment");
 
 // variables storing user inputs
+// handles the liri command
 var input1 = process.argv[2];
+// allows for multiple word title searches
 var input2 = process.argv.slice(3).join(" ");
 
 // Initializing keys
