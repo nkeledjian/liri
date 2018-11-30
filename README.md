@@ -1,7 +1,6 @@
 # liri 
 ##### (Language Interpretation and Recognition Interface)
 
-
 ## MUSIC :notes:
 ### Search Music Groups 
 ###### powered by Bands in Town Artists Events API
@@ -36,7 +35,7 @@ https://giphy.com/gifs/nmedq4NdAWqCjT4LGr/html5
 
 ## DO WHAT IT SAYS MODE with RANDOM.TXT
 Create a command in random.txt file like this:
-`concert-this,tycho` or `movie-this,deep impact`
+`concert-this,tycho` or `movie-this,return of the jedi`
 
 and run it with:
 `node liri.js do-what-it-says`
