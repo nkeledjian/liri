@@ -14,8 +14,7 @@ Find out where & when your favorite artists are performing next with this comman
 Discover information about songs and albums with the command:
 * node liri.js spotify-this-song "song name here"
 
-###### Screenshots:
-https://giphy.com/gifs/1wpOLh8pwXk5oOtwjb/html5
+![Alt Text](https://media.giphy.com/media/1wpOLh8pwXk5oOtwjb/giphy.gif)
 
 ## MOVIES :movie_camera:
 #### Search Titles and Reviews 
@@ -29,8 +28,7 @@ and get:
 * Rotten Tomatoes Rating
 * Plots, Actors, and More
 
-###### Screenshots:
-https://giphy.com/gifs/nmedq4NdAWqCjT4LGr/html5
+![Alt Text](https://media.giphy.com/media/nmedq4NdAWqCjT4LGr/giphy.gif)
 
 ## DO WHAT IT SAYS MODE with RANDOM.TXT
 Create a command in random.txt file like this:
@@ -39,5 +37,4 @@ Create a command in random.txt file like this:
 and run it with:
 `node liri.js do-what-it-says`
 
-###### Screenshots:
-https://giphy.com/gifs/mMF9fkRjuP4hG9f6oL/html5
+![Alt Text](https://media.giphy.com/media/mMF9fkRjuP4hG9f6oL/giphy.gif)
